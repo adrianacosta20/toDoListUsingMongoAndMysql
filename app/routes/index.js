@@ -7,5 +7,5 @@ module.exports = function (app, passport, mysqldb) {
     require('./views')(app, mysqldb);
      
     // INITIALIZE MYSQL
-    require('./mysql')(app, mysqldb);
+    // require('./mysql')(app, mysqldb);
   }
