@@ -47,7 +47,7 @@ module.exports = function (app, mysqldb) {
   // we will use route middleware to verify this (the isLoggedIn function)
   app.get('/get-todos', isLoggedIn, function (req, res) {
     mysqldb.query(
-      `SELECT * FROM todos`, 
+      `SELECT * FROM todos WHERE uid='${req.user._id}'`, 
       function (error, results, fields) {
 
       if (error) throw error ;
@@ -61,7 +61,8 @@ module.exports = function (app, mysqldb) {
       });
     });
   });
-  app.post('/create-todo',isLoggedIn, function (req, res) {
+
+  app.post('/create-todo', isLoggedIn, function (req, res) {
     
     console.log('data ', req.body);
 
@@ -69,7 +70,7 @@ module.exports = function (app, mysqldb) {
       task: req.body.task,
       date: moment().format('YYYY/MM/DD'),
       complete: false,
-      uid: 'sd9f87sdf76s7d6fsdf67sd',
+      uid: req.user._id,
       due_date: moment().add(7, "days").format('YYYY/MM/DD')
     }
 
@@ -99,6 +100,7 @@ module.exports = function (app, mysqldb) {
     });
 
   });
+
   app.post('/delete-todo', function (req, res) {
     var id = req.body.id;
 
@@ -126,6 +128,7 @@ module.exports = function (app, mysqldb) {
       });
 
   });
+
   app.post('/update-todo', function (req, res) {
     var id = req.body.id;
 
@@ -172,6 +175,7 @@ module.exports = function (app, mysqldb) {
   app.get('/password-recovery', function (req, res) {
     res.render('password-recovery.ejs', { message: req.flash('passwordRecoveryMessage') });
   });
+
   app.get('/password-reset', function (req, res) {
     res.render('password-reset.ejs', { message: req.flash('passwordResetMessage') });
   });

@@ -64,7 +64,7 @@ $(document).ready(function () {
 
     console.log('complete ', complete);
 
-    if (complete == 0 ) {
+    if ( complete == 0 ) {
       $.post("/update-todo", {
         id: id
       }, function (response) {
