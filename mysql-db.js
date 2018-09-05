@@ -4,7 +4,7 @@
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-  host: 'aacosta.techlaunch.io',
+  host: 'localhost',
   user: 'root',
   password: 'open',
   database: 'todo'
