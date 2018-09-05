@@ -74,6 +74,7 @@ module.exports = function (app, mysqldb) {
       due_date: moment().add(7, "days").format('YYYY/MM/DD')
     }
 
+
     mysqldb.query(
       `INSERT INTO todos(task, date, complete, uid, due_date) 
        VALUES('${todo.task}', '${todo.date}', ${todo.complete}, '${todo.uid}', '${todo.due_date}')`, 
@@ -103,7 +104,7 @@ module.exports = function (app, mysqldb) {
 
   app.post('/delete-todo', function (req, res) {
     var id = req.body.id;
-
+    console.log('idddddddddddddddddd', id);
     mysqldb.query(
       `DELETE FROM todos WHERE id = ${id}`,
       function (error, result, fields) {
