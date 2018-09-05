@@ -42,7 +42,7 @@ $(document).ready(function () {
     // let parent = $(this).parent()[0];
     // let id = parent.id;
 
-        
+    console.log(e);
     console.log('removing ', id);
 
     $.post("/delete-todo", {
