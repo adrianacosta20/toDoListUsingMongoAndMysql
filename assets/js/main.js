@@ -1,6 +1,8 @@
 $(document).ready(function () {
   const scroll = () => $('#todos_container').scrollTop($('#todos_container')[0].scrollHeight);
 
+  
+
   const createTodo = () => {
     let task = $('#todo_input').val();
     if (task) {
@@ -11,7 +13,7 @@ $(document).ready(function () {
           console.log('result ', response.todo);
 
           $('#todos_container').append(`
-          <div id="${response.todo.uid}" class="todo-container ${response.todo.complete ? 'checked' : ''}">
+          <div id="${response.todo.id}" class="todo-container ${response.todo.complete ? 'checked' : ''}">
               <div class="remove">
                 <span class="ion-trash-a icon-remove"></span>
               </div>

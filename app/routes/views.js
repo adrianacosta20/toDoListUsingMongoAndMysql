@@ -74,6 +74,13 @@ module.exports = function (app, mysqldb) {
       due_date: moment().add(7, "days").format('YYYY/MM/DD')
     }
 
+    function guidGenerator() {
+      var S4 = function() {
+         return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+      };
+      return (S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4());
+    };
+
 
     mysqldb.query(
       `INSERT INTO todos(task, date, complete, uid, due_date) 
@@ -91,6 +98,7 @@ module.exports = function (app, mysqldb) {
         }
         else {
           // console.log('result: ', result);
+          console.log(result.insertId);
           todo.id = result.insertId;
 
           res.send({
