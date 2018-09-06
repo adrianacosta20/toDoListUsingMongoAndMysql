@@ -79,7 +79,7 @@ module.exports = function (app, mysqldb) {
       `INSERT INTO todos(task, date, complete, uid, due_date) 
        VALUES('${todo.task}', '${todo.date}', ${todo.complete}, '${todo.uid}', '${todo.due_date}')`, 
       function (error, result, fields) {
-
+        
         if (error) {
           console.log('error ', error);
 
@@ -92,6 +92,7 @@ module.exports = function (app, mysqldb) {
         else {
           // console.log('result: ', result);
           todo.id = result.insertId;
+          console.log('IDDDDDDDDDDDDDDd', todo.id);
 
           res.send({
             success: true,
